@@ -15,6 +15,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Bundle Three.js locally for offline APK
+        run: |
+          curl -sSL https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js -o app/src/main/assets/three.min.js
+          sed -i 's|https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js|three.min.js|g' app/src/main/assets/index.html
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
